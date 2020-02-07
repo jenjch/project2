@@ -14,6 +14,7 @@ module.exports = function(sequelize, DataTypes) {
      // is not null before querying the DB, look at the validations section below.
      title: { type: Sequelize.STRING, allowNull: false},
      description: Sequelize.TEXT, 
+     artist : Sequelize.STRING,
      podcastURL : Sequelize.STRING,
      artworkURL : Sequelize.STRING,
      itunes_id : Sequelize.INTEGER,
