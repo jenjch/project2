@@ -1,24 +1,21 @@
 {
-    "development": {
-      "username": "f36u4apkgv7cym37",
-      "password": "el9z4m62cs4d7hfc",
-      "database": "r99vvxhe1x5eknet",
-      "host": "otmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      "port": 3306,
-      "dialect": "mysql"
-    },
-    "test": {
-      "username": "f36u4apkgv7cym37",
-      "password": "el9z4m62cs4d7hfc",
-      "database": "r99vvxhe1x5eknet",
-      "host": "otmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      "dialect": "mysql"
-    },
-    "production": {
-      "username": "f36u4apkgv7cym37",
-      "password": "el9z4m62cs4d7hfc",
-      "database": "r99vvxhe1x5eknet",
-      "host": "otmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      "dialect": "mysql"
-    }
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "podcastsDB",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "f36u4apkgv7cym37",
+    "password": "el9z4m62cs4d7hfc",
+    "database": "r99vvxhe1x5eknet",
+    "host": "otmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable":"JAWSDB_URL",
+    "dialect": "mysql"
   }
+}
