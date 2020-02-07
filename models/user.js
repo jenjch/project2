@@ -6,13 +6,13 @@ module.exports = function(sequelize, DataTypes) {
  // id: { type: Sequelize.STRING, allowNull: false, defaultValue: true},
  
   //user can create unique username
-  username: {type: Sequelize.TEXT, allowNULL:false },
+  username: {type: DataTypes.TEXT, allowNULL:false },
  
   // setting allowNull to false will add NOT NULL to the column, which means an error will be
   // thrown from the DB when the query is executed if the column is null. If you want to check that a value
   // is not null before querying the DB, look at the validations section below.
-  first_name: { type: Sequelize.STRING, allowNull: false},
-  last_name: { type: Sequelize.STRING, allowNull: false}
+  first_name: { type: DataTypes.STRING, allowNull: false},
+  last_name: { type: DataTypes.STRING, allowNull: false}
  });
  return User;
 };
