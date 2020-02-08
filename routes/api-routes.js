@@ -1,3 +1,12 @@
+
+// JC - may want to import this connection set up in the config file for path below
+let connectionConfig = require("../config/config.JSON")
+let connectObj = JSON.parse(connectionConfig);
+// JSON.parse to convert jSON string to javascript
+// i.e use connectObj.development (but make sure to update the password to not "null"!) in config file as path for testing on local connection.
+// don't think you need to add multiple const path = since it was giving an already defined variable type error after starting with node 
+
+
 // *********************************************************************************
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************

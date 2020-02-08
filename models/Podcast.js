@@ -1,4 +1,5 @@
 const DB = require("../models");
+// don't think we need above since we have .associate at the bottom and Const DB is not being used -JC
 
 module.exports = function(sequelize, DataTypes) {
   var Podcast = sequelize.define("Podcast", {

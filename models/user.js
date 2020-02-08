@@ -17,3 +17,4 @@ module.exports = function(sequelize, DataTypes) {
  return User;
 };
  
+// capitalize schema files
