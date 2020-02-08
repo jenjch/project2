@@ -1,24 +1,90 @@
-.navbar {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    background-color: rgb(223, 225, 231) !important;
+html,
+body {
+  height: 100%;
 }
 
-.footer {
-    background-color: rgb(223, 225, 231);
-    font-weight: 500;
-    height: 60px;
-    position: fixed;
-    bottom: 0;
-    width:100%;
+body {
+  background-image: url("../img/background.jpg");
+  min-width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover; 
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.container {
-    padding-bottom: 80px;
+
+.jumbotron {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, .8) !important;
 }
 
-#copyright {
-    position: relative;
-    top: 15px;
+.jumbotron h1,p {
+  text-align: center;
+}
+
+/* .searchJumbo {
+  height: 100%;
+} */
+
+.col-sm {
+  border: green thick;
+}
+
+.btnLeft {
+
+}
+.btnRight {
+  float: right;
+
+}
+
+
+#sResults {
+  border: thin black;
+}
+
+/*---------------Sign-in page------------*/
+
+.signIn {
+  background-color: rgba(255, 255, 255, .8);  
+  }
+
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
