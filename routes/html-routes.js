@@ -31,5 +31,11 @@ module.exports = function(app) {
     return res.render("collections");
   });
 
+  //view/search page
+   // can rename the url paths however we want (the name inside render is the name of the handlebars file)
+  app.get("/search", function(req, res) {
+    return res.render("search");
+  });
+
 
 };
