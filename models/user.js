@@ -14,6 +14,10 @@ module.exports = function(sequelize, DataTypes) {
   first_name: { type: DataTypes.STRING, allowNull: false},
   last_name: { type: DataTypes.STRING, allowNull: false}
  });
+ User.associate = function(DB) {
+    User.belongsToMany(DB.Collection, { through: "UserCollection" });
+  };
+
  return User;
 };
  

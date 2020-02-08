@@ -14,17 +14,17 @@ module.exports = function(sequelize, DataTypes) {
     description: { type: DataTypes.STRING, allowNull: false },
 
     //It is possible to create foreign keys:
-    user_id: {
-      type: DataTypes.INTEGER,
+    // user_id: {
+    //   type: DataTypes.INTEGER,
 
-      references: {
-        // This is a reference to another model
-        model: DB.User,
+    //   // references: {
+    //   //   // This is a reference to another model
+    //   //   model: DB.User,
 
-        // This is the column name of the referenced model
-        key: "id"
-      }
-    }
+    //   //   // This is the column name of the referenced model
+    //   //   key: "id"
+    //   // }
+    // }
   });
 
   Collection.associate = function(DB) {

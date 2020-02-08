@@ -1,7 +1,7 @@
 
 // JC - may want to import this connection set up in the config file for path below
-let connectionConfig = require("../config/config.JSON")
-let connectObj = JSON.parse(connectionConfig);
+// let connectionConfig = require("../config/config.JSON")
+// let connectObj = JSON.parse(connectionConfig);
 // JSON.parse to convert jSON string to javascript
 // i.e use connectObj.development (but make sure to update the password to not "null"!) in config file as path for testing on local connection.
 // don't think you need to add multiple const path = since it was giving an already defined variable type error after starting with node 
@@ -16,7 +16,7 @@ let connectObj = JSON.parse(connectionConfig);
 
 // Requiring our models
 var db = require("../models");
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 
 // Routes
 // =============================================================
@@ -89,64 +89,64 @@ app.post("/api/user", function(req, res) {
 
 
  // the async function showCollectionUser will identify the collections belonging to specific usernames
-const path = 'mysql://user12:12user@localhost:3306/mydb';
-const sequelize = new Sequelize(path, {
-    operatorsAliases: false,
-    logging: false
-});
+// const path = connectObj.development;
+// const sequelize = new Sequelize(path, {
+//     operatorsAliases: false,
+//     logging: false
+// });
 
-let User = sequelize.define('user', {
-    username: Sequelize.STRING
-});
+// let User = sequelize.define('user', {
+//     username: Sequelize.STRING
+// });
 
-let Collections = sequelize.define('collections', {
-    description: Sequelize.STRING
-});
+// let Collections = sequelize.define('collections', {
+//     description: Sequelize.STRING
+// });
 
-User.hasMany(Collections);
-Collectioins.belongsTo(User);
+// User.hasMany(Collections);
+// Collectioins.belongsTo(User);
 
-async function showCollectionUser() {
+// async function showCollectionUser() {
 
-    let collection = await Collectioins.findOne({ include: [User] });
+//     let collection = await Collectioins.findOne({ include: [User] });
 
-    console.log(`${collections.collection_name} belongs to ${User.username}`);
+//     console.log(`${collections.collection_name} belongs to ${User.username}`);
 
-    sequelize.close();
-}
+//     sequelize.close();
+// }
 
-showCollectionUser();
+// showCollectionUser();
 
-//---------------------------------------------------
-  //test api route
-  const path = 'api/collection';
+// //---------------------------------------------------
+//   //test api route
+//   // const path = 'api/collection';
   
-  const sequelize = new Sequelize(path, {
-      operatorsAliases: false,
-      logging: false
-  });
+//   // const sequelize = new Sequelize(path, {
+//   //     operatorsAliases: false,
+//   //     logging: false
+//   // });
   
-  let Note = sequelize.define('notes', {
-      description: Sequelize.STRING
-  });
+//   let Note = sequelize.define('notes', {
+//       description: Sequelize.STRING
+//   });
   
-  Collection.findById(req.body.id).then((note) => {
-      console.log(note.get({ plain: true }));
-      console.log('********************')
-      console.log(`id: ${note.id}, description: ${note.description}`);
-  }).finally(() => {
-      sequelize.close();
-  });
+//   Collection.findById(req.body.id).then((note) => {
+//       console.log(note.get({ plain: true }));
+//       console.log('********************')
+//       console.log(`id: ${note.id}, description: ${note.description}`);
+//   }).finally(() => {
+//       sequelize.close();
+//   });
 
 
-  // DELETE route for deleting Collection. We can get the id of the collectioin we want to delete from
-  // req.params.id
-  app.delete("/api/collection/:id", function(req, res) {
+//   // DELETE route for deleting Collection. We can get the id of the collectioin we want to delete from
+//   // req.params.id
+//   app.delete("/api/collection/:id", function(req, res) {
 
-  });
+//   });
 
-  // PUT route for updating Collection. We can get the updated Collection from req.body
-  app.put("/api/collection", function(req, res) {
+//   // PUT route for updating Collection. We can get the updated Collection from req.body
+//   app.put("/api/collection", function(req, res) {
 
-  });
+//   });
 };
