@@ -4,4 +4,4 @@
 Podcast Community
 
 # Deployed App
-https://project2-020420.herokuapp.com/
+https://project2-020420.herokuapp.com/ 
