@@ -56,10 +56,19 @@ app.post("/api/user", function(req, res) {
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
     db.Collection.create({
-      user_id : req.body.user_id,
+      // deleted this because foreign key taken care of by sequelize
+      // user_id : req.body.user_id,
       collection_name: req.body.collection_name,
       description: req.body.description
-    }).then(function(dbCollection) {
+    })
+    .then(function(dbCollection) {
+      // We have access to the new todo as an argument inside of the callback function
+      // 
+      dbCollection.addUser(req.body.enteredUsername);
+      // need to do a find to match userId 
+    })
+
+    .then(function(dbCollection) {
       // We have access to the new todo as an argument inside of the callback function
       res.json(dbCollection);
     });
@@ -89,19 +98,11 @@ app.post("/api/user", function(req, res) {
 
 
  // the async function showCollectionUser will identify the collections belonging to specific usernames
-<<<<<<< HEAD
-// const path = connectObj.development;
+// const path = 'mysql://user12:12user@localhost:3306/db'
 // const sequelize = new Sequelize(path, {
 //     operatorsAliases: false,
 //     logging: false
 // });
-=======
-const path = 'mysql://user12:12user@localhost:3306/db';
-const sequelize = new Sequelize(path, {
-    operatorsAliases: false,
-    logging: false
-});
->>>>>>> c6787620ec622f51c27b2268c3d3bd1aaebf6af3
 
 // let User = sequelize.define('user', {
 //     username: Sequelize.STRING
@@ -111,13 +112,8 @@ const sequelize = new Sequelize(path, {
 //     description: Sequelize.STRING
 // });
 
-<<<<<<< HEAD
 // User.hasMany(Collections);
 // Collectioins.belongsTo(User);
-=======
-User.hasMany(Collections);
-Collections.belongsTo(User);
->>>>>>> c6787620ec622f51c27b2268c3d3bd1aaebf6af3
 
 // async function showCollectionUser() {
 
