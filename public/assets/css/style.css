@@ -51,3 +51,7 @@ body {
 #sResults {
   border: thin black;
 }
+
+.appBoxes {
+  border: thin black solid;
+}
