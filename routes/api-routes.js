@@ -89,11 +89,19 @@ app.post("/api/user", function(req, res) {
 
 
  // the async function showCollectionUser will identify the collections belonging to specific usernames
+<<<<<<< HEAD
 // const path = connectObj.development;
 // const sequelize = new Sequelize(path, {
 //     operatorsAliases: false,
 //     logging: false
 // });
+=======
+const path = 'mysql://user12:12user@localhost:3306/db';
+const sequelize = new Sequelize(path, {
+    operatorsAliases: false,
+    logging: false
+});
+>>>>>>> c6787620ec622f51c27b2268c3d3bd1aaebf6af3
 
 // let User = sequelize.define('user', {
 //     username: Sequelize.STRING
@@ -103,8 +111,13 @@ app.post("/api/user", function(req, res) {
 //     description: Sequelize.STRING
 // });
 
+<<<<<<< HEAD
 // User.hasMany(Collections);
 // Collectioins.belongsTo(User);
+=======
+User.hasMany(Collections);
+Collections.belongsTo(User);
+>>>>>>> c6787620ec622f51c27b2268c3d3bd1aaebf6af3
 
 // async function showCollectionUser() {
 
