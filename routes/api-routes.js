@@ -89,7 +89,7 @@ app.post("/api/user", function(req, res) {
 
 
  // the async function showCollectionUser will identify the collections belonging to specific usernames
-const path = 'mysql://user12:12user@localhost:3306/mydb';
+const path = 'mysql://user12:12user@localhost:3306/db';
 const sequelize = new Sequelize(path, {
     operatorsAliases: false,
     logging: false
@@ -104,7 +104,7 @@ let Collections = sequelize.define('collections', {
 });
 
 User.hasMany(Collections);
-Collectioins.belongsTo(User);
+Collections.belongsTo(User);
 
 async function showCollectionUser() {
 
