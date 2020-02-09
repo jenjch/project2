@@ -1,0 +1,54 @@
+<body>
+
+    <div id="main" class="container">
+      <div class="jumbotron col-10">
+        <h1 class="display-4">Search Podcasts!</h1>
+        <p class="lead">You can search for Podcasts by...</p>
+        <form class="searchForm">
+
+          <input type="text" id="searchBox" name="" placeholder="Search...">
+          <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
+           
+        </form>
+        <br></br>
+        <h6>Click on the <i class="fa fa-microphone"></i> to add podcast to your collection.</h6>
+        <hr class="my-4">
+        
+        <div class="row">        
+          
+          <!-- Search Results ------->
+          <div class="appBoxes col-4" >
+            <div id="sResults" class="container"></div>
+              <h5>Search Results:</h5>
+                <div>
+                  {{!-- <form action="{{this.id}}?_method=PUT" method="POST">
+                    {{}}   --}}
+                    <button type="submit" class="Button fa fa-microphone"></button>
+                  </form>
+                </div>
+          </div>
+
+        <!---- Middle  Column -------------->
+          <div class="col-4">
+         
+        
+          </div>
+
+        <!------ Collection Column --------------->
+          <div class="appBoxes col-4">
+            <div id="devoured" class="container">
+              <h5>My Collection:</h5>
+                {{!-- {{}}
+                {{}} --}}
+                  
+            </div>            
+          </div>
+        </div>
+        
+        <a class="btn btn-dark btn-lg btnLeft" href="/" role="button">Home</a>
+
+      </div>     
+    </div>
+
+
+  </body>
