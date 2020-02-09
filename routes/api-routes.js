@@ -13,23 +13,70 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 // Andre's original routes start here, need to be tested and/or modified based on sequelize methods or response data needed - Jenny
+// These routes are still under test ! See routes in the bottom for those tested by JC and Russel
 
-  // GET route for getting all of the users
-  app.get("/api/user", function(req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.User.findAll({}).then(function(dbUser) {
-      // We have access to the todos as an argument inside of the callback function
+//POST route to create a new User
+app.post("/api/user", function(req, res) {
+  // Creates a user with the data available to us in req.body
+  console.log(req.body);
+  db.users.create(req.body).then(function(dbUser) {
+    res.json(dbUser);
+  });
+});
+
+
+//DELETE route to delete a user based on user id
+app.delete("/api/user/:id", function(req, res) {
+  // Delete the User with the id available to us in req.params.id
+  db.users.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(dbUser) {
+    res.json(dbUser);
+  });
+});
+
+
+  // GET route for getting users based on username
+  app.get("/api/user/:username", function(req, res) {
+    // Find one User with the id in req.params.id and return them to the user with res.json
+    console.log(req.body);
+    db.users.findOne({
+      where: {
+        id: req.params.username
+      }
+    }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.get("/api/collection", function(req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.User.findAll({}).then(function(dbUser) {
-      // We have access to the todos as an argument inside of the callback function
-      res.json(dbUser);
-    });
+
+  // GET route for getting podcasts based on query parameter Title
+  app.get("/api/search/:title", function(req, res) {
+    
+    // findAll returns all entries based on parameter for query
+    //in this case looking in table Podcasts for those matching title from req.
+    db.Podcast.findAll({
+      where: {
+        title: req.params.title
+      },
+      include: [
+        {
+          model: db.Podcast
+         
+          // through: {
+          // attributes: ['createdAt', 'title'],
+          // }
+        }
+      ]
+    })
+      .then(function(dbPodcastFound) {
+        res.json(dbPodcastFound);
+      });
   });
+  //end of GET route for podcasts based on title
+
 
   // POST route for saving a new User
   app.post("/api/user", function(req, res) {
@@ -42,13 +89,14 @@ module.exports = function(app) {
       first_name: req.body.first_name,
       last_name: req.body.last_name
     }).then(function(dbUser) {
-      // We have access to the new todo as an argument inside of the callback function
+      // We have access to the dbUser as an argument inside of the callback function
       res.json(dbUser);
     });
   });
 
+
   // POST route for saving a new collection
-  app.post("/api/collection", function(req, res) {
+  app.post("/api/collections", function(req, res) {
     console.log(req.body);
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
@@ -60,7 +108,6 @@ module.exports = function(app) {
       description: req.body.description
     })
       .then(function(dbCollection) {
-        // We have access to the new todo as an argument inside of the callback function
 
         //Russell's rec at the start of class to add, need to clarify
         dbCollection.addUser(req.body.enteredUsername);
@@ -68,10 +115,30 @@ module.exports = function(app) {
       })
 
       .then(function(dbCollection) {
-        // We have access to the new todo as an argument inside of the callback function
+        // We have access to the new one as an argument inside of the callback function
         res.json(dbCollection);
       });
   });
+
+  // GET route to display collections info by user id
+  //still in work to figure out the connection using usercollection for it
+  app.get("/api/:user/collections", function(req, res) {
+    db.collections.findAll({
+      where: {
+        id: req.params.user
+      },
+      include: [
+        {
+          model: db.Collection
+      
+        }
+      ]
+    }).then(function(CollectionsData) {
+      res.json(CollectionsData);
+    });
+  });
+
+
 
   // 2 new API routes below created and tested in Postman 2/8 - Jenny
 
