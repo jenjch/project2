@@ -15,20 +15,25 @@ module.exports = function(app) {
 // Andre's original routes start here, need to be tested and/or modified based on sequelize methods or response data needed - Jenny
 // These routes are still under test ! See routes in the bottom for those tested by JC and Russel
 
+// 6 routes tested - Andre Barreto 02/09
 //POST route to create a new User
-app.post("/api/user", function(req, res) {
-  // Creates a user with the data available to us in req.body
-  console.log(req.body);
-  db.users.create(req.body).then(function(dbUser) {
+    app.post("/api/user", function(req, res) {
+//   // Creates a user with the data available to us in req.body
+     console.log(req.body);
+     db.User.create({
+      username: req.body.username,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      }).then(function(dbUser) {
     res.json(dbUser);
   });
-});
+ });
 
 
 //DELETE route to delete a user based on user id
 app.delete("/api/user/:id", function(req, res) {
   // Delete the User with the id available to us in req.params.id
-  db.users.destroy({
+  db.User.destroy({
     where: {
       id: req.params.id
     }
@@ -42,9 +47,9 @@ app.delete("/api/user/:id", function(req, res) {
   app.get("/api/user/:username", function(req, res) {
     // Find one User with the id in req.params.id and return them to the user with res.json
     console.log(req.body);
-    db.users.findOne({
+    db.User.findOne({
       where: {
-        id: req.params.username
+        username: req.params.username
       }
     }).then(function(dbUser) {
       res.json(dbUser);
@@ -61,15 +66,6 @@ app.delete("/api/user/:id", function(req, res) {
       where: {
         title: req.params.title
       },
-      include: [
-        {
-          model: db.Podcast
-         
-          // through: {
-          // attributes: ['createdAt', 'title'],
-          // }
-        }
-      ]
     })
       .then(function(dbPodcastFound) {
         res.json(dbPodcastFound);
@@ -96,6 +92,8 @@ app.delete("/api/user/:id", function(req, res) {
 
 
   // POST route for saving a new collection
+  // as per Russel's request this route will be left for later due to the need of username entered  and clarifications
+  //Do not use yet
   app.post("/api/collections", function(req, res) {
     console.log(req.body);
     // create takes an argument of an object describing the item we want to
@@ -123,13 +121,13 @@ app.delete("/api/user/:id", function(req, res) {
   // GET route to display collections info by user id
   //still in work to figure out the connection using usercollection for it
   app.get("/api/:user/collections", function(req, res) {
-    db.collections.findAll({
+    db.User.findOne({
       where: {
-        id: req.params.user
+        id: req.params.id
       },
       include: [
         {
-          model: db.Collection
+          model: db.Collection,
       
         }
       ]
@@ -137,7 +135,6 @@ app.delete("/api/user/:id", function(req, res) {
       res.json(CollectionsData);
     });
   });
-
 
 
   // 2 new API routes below created and tested in Postman 2/8 - Jenny
