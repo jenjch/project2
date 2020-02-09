@@ -1,10 +1,3 @@
-// JC - may want to import this connection set up in the config file for path below
-// let connectionConfig = require("../config/config.JSON")
-// let connectObj = JSON.parse(connectionConfig);
-// JSON.parse to convert jSON string to javascript
-// i.e use connectObj.development (but make sure to update the password to not "null"!) in config file as path for testing on local connection.
-// don't think you need to add multiple const path = since it was giving an already defined variable type error after starting with node
-
 // *********************************************************************************
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
@@ -19,8 +12,18 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
+// Andre's original routes start here, need to be tested and/or modified based on sequelize methods or response data needed - Jenny
+
   // GET route for getting all of the users
   app.get("/api/user", function(req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.User.findAll({}).then(function(dbUser) {
+      // We have access to the todos as an argument inside of the callback function
+      res.json(dbUser);
+    });
+  });
+
+  app.get("/api/collection", function(req, res) {
     // findAll returns all entries for a table when used with no options
     db.User.findAll({}).then(function(dbUser) {
       // We have access to the todos as an argument inside of the callback function
@@ -58,7 +61,8 @@ module.exports = function(app) {
     })
       .then(function(dbCollection) {
         // We have access to the new todo as an argument inside of the callback function
-        //
+
+        //Russell's rec at the start of class to add, need to clarify
         dbCollection.addUser(req.body.enteredUsername);
         // need to do a find to match userId
       })
@@ -69,85 +73,62 @@ module.exports = function(app) {
       });
   });
 
-  // POST route for saving a new podcast
-  app.post("/api/podcast", function(req, res) {
-    console.log(req.body);
-    // create takes an argument of an object describing the item we want to
-    // insert into our table. In this case we just we pass in an object with a text
-    // and complete property (req.body)
-    db.Podcast.create({
-      image: req.body.image,
-      description: req.body.description,
-      language: req.body.language,
-      categories: req.body.categories,
-      website: req.body.website,
-      author: req.body.author,
-      itunes_id: req.body.itunes_id
+  // 2 new API routes below created and tested in Postman 2/8 - Jenny
 
-    }).then(function(dbPodcast) {
-      // We have access to the new Podcast as an argument inside of the callback function
-      res.json(dbPodcast);
+  // for adding a podcast for a specific collection (if you try to add the same one more than once, seems to not create duplicate, which is good)
+  app.post("/api/collections/:collectionid/add/:podcastid", function(req, res) {
+    console.log(req.body);
+    var foundPodcast;
+    var foundCollection;
+
+    // purpose of route is to add a podcast to a collection and establish association from podcast to the collection
+    // need to find collection from :id
+    // need to know what podcast we're adding, and associate collection with a podcast
+    db.Collection.findOne({
+      where: {
+        // use .params if it's in url, .body is the object that's send along with request
+        id: req.params.collectionid
+      }
+    }).then(function(colData) {
+      foundCollection = colData;
+      db.Podcast.findOne({
+        where: {
+          id: req.params.podcastid
+        }
+      }).then(function(podData) {
+        foundPodcast = podData;
+
+        if (foundPodcast && foundCollection) {
+          // Podcast part of "addPodcast" sequelize method is table name
+          foundCollection
+            .addPodcast(foundPodcast)
+
+            .then(function() {
+              res.send("added podcast to collection");
+            });
+        }
+      });
     });
   });
 
-  // the async function showCollectionUser will identify the collections belonging to specific usernames
-  // const path = 'mysql://user12:12user@localhost:3306/db'
-  // const sequelize = new Sequelize(path, {
-  //     operatorsAliases: false,
-  //     logging: false
-  // });
-
-  // let User = sequelize.define('user', {
-  //     username: Sequelize.STRING
-  // });
-
-  // let Collections = sequelize.define('collections', {
-  //     description: Sequelize.STRING
-  // });
-
-  // User.hasMany(Collections);
-  // Collectioins.belongsTo(User);
-
-  // async function showCollectionUser() {
-
-  //     let collection = await Collectioins.findOne({ include: [User] });
-
-  //     console.log(`${collections.collection_name} belongs to ${User.username}`);
-
-  //     sequelize.close();
-  // }
-
-  // showCollectionUser();
-
-  // //---------------------------------------------------
-  //   //test api route
-  //   // const path = 'api/collection';
-
-  //   // const sequelize = new Sequelize(path, {
-  //   //     operatorsAliases: false,
-  //   //     logging: false
-  //   // });
-
-  //   let Note = sequelize.define('notes', {
-  //       description: Sequelize.STRING
-  //   });
-
-  //   Collection.findById(req.body.id).then((note) => {
-  //       console.log(note.get({ plain: true }));
-  //       console.log('********************')
-  //       console.log(`id: ${note.id}, description: ${note.description}`);
-  //   }).finally(() => {
-  //       sequelize.close();
-  //   });
-
-  //   // DELETE route for deleting Collection. We can get the id of the collectioin we want to delete from
-  //   // req.params.id
-  //   app.delete("/api/collection/:id", function(req, res) {
-
-  //   });
-
-  //   // PUT route for updating Collection. We can get the updated Collection from req.body
-  //   app.put("/api/collection", function(req, res) {
-
-  //   });
+  // displays collection info (and any podcasts in them) by id as JSON
+  app.get("/api/collections/:id", function(req, res) {
+    db.Collection.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        {
+          model: db.Podcast
+          // code below (currently commented out) is for determining which columns exactly to show in displayed podcast data. Need to read sequelize documentation for how to use
+          // through: {
+          // attributes: ['createdAt', 'startedAt', 'finishedAt'],
+          // }
+        }
+      ]
+    }).then(function(podcastData) {
+      res.json(podcastData);
+    });
+  });
+// closing bracket for the module.exports function
 };
