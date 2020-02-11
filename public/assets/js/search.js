@@ -11,7 +11,7 @@ $("#searchBtn").on("click", function() {
 
     $("#searchResults").empty();
 
-    $("#searchResults").append("<h2" + data + "</h2>");
+    $("#searchResults").append("<h2" + data.title + "</h2>");
 
   });
 });
