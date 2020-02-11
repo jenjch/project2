@@ -185,21 +185,28 @@ app.delete("/api/user/:id", function(req, res) {
 // // closing bracket for the module.exports function
 // };
 
-  // app.get("/api/:user/collections", function(req, res) {
-  //   db.User.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     },
-  //     include: [
-  //       {
-  //         model: db.Collection,
-      
-  //       }
-  //     ]
-  //   }).then(function(CollectionsData) {
-  //     res.json(CollectionsData);
-  //   });
-  // });
+// tested in Postman 2/10 - Jenny 
+// for finding all collections by user id, return as JSON, with cascading [include:] model, to show Podcast data in the same response
+app.get("/api/:user/collections", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.user
+      },
+      include: [
+        {
+          model: db.Collection,
+          
+          include: [
+            {
+              model: db.Podcast,
+            }
+          ]
+        }
+      ]
+    }).then(function(CollectionsData) {
+      res.json(CollectionsData);
+    });
+  });
 
 
   // 2 new API routes below created and tested in Postman 2/8 - Jenny
