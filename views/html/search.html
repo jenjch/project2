@@ -23,13 +23,13 @@
 
     <div id="main" class="container">
       <div class="jumbotron col-10">
+        <a class="btn btn-dark btn-xs btnLeft" href="./index.html" role="button">Home</a>
+
         <h1 class="display-4">Search Podcasts!</h1>
         <p class="lead">You can search for Podcasts by...</p>
         <form class="searchForm">
-
           <input type="text" id="searchBox" name="" placeholder="Search...">
           <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
-           
         </form>
         <br></br>
         <h6>Click on the <i class="fa fa-microphone"></i> to add podcast to your collection.</h6>
@@ -44,7 +44,7 @@
                 <div>
                   <form action="{{this.id}}?_method=PUT" method="POST">
                     {{}}  
-                    <button type="submit" class="Button fa fa-microphone"></button>
+                    <button type="submit" class="micButton fa fa-microphone"></button>
                   </form>
                 </div>
           </div>
@@ -57,14 +57,25 @@
 
         <!------ Collection Column --------------->
           <div class="appBoxes col-4">
-            <div id="devoured" class="container">
+            <div class="container">
               <h5>My Collection:</h5>
                 {{}}
-                {{}}
-                  
+                {{}}                  
             </div>            
           </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div class="nameContainer col-12">
+          <form class="nameForm">
+            <input type="text" id="nameBox" name="" placeholder="Name Collection">
+            <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
+          </form>
+        </div>  
+
+
         </div>
+
       </div>     
     </div>
 

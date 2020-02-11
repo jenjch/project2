@@ -18,6 +18,18 @@ body {
   padding-bottom: 40px;
 }
 
+#searchBox {
+  width: 80%;
+}
+
+.btn {
+  float: Right;
+}
+
+.nameForm {
+  float: right;
+  border: thick blue;
+}
 
 .jumbotron {
   width: 100%;
@@ -47,6 +59,11 @@ body {
 
 }
 
+.micButton {
+  float: right;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+ }
 
 #sResults {
   border: thin black;
