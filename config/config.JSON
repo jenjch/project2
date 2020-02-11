@@ -1,7 +1,9 @@
 {
   "development": {
-    "username": "OnTheRocks",
-    "password": "OnTheRocks",
+
+    "username": "XXXXX",
+    "password": "XXXXX",
+
     "database": "podcastsDB",
     "host": "127.0.0.1",
     "port": 3306,
