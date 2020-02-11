@@ -19,7 +19,7 @@ body {
 }
 
 #searchBox {
-  width: 80%;
+  width: 95%;
 }
 
 .btn {
@@ -29,6 +29,10 @@ body {
 .nameForm {
   float: right;
   border: thick blue;
+}
+
+.dropdown {
+  float: left;
 }
 
 .jumbotron {
@@ -52,8 +56,9 @@ body {
 }
 
 .btnLeft {
-
+float: left;
 }
+
 .btnRight {
   float: right;
 

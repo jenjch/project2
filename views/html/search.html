@@ -26,10 +26,25 @@
         <a class="btn btn-dark btn-xs btnLeft" href="./index.html" role="button">Home</a>
 
         <h1 class="display-4">Search Podcasts!</h1>
-        <p class="lead">You can search for Podcasts by...</p>
+        <p class="lead">You can search for Podcasts by Title or Author...</p>
+
+
+        <div class="dropdown">
+          <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Search By:
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Search By Title</a>
+            <a class="dropdown-item" href="#">Search By Author</a>
+          </div>
+        </div>
+
+        
+        <br></br>
+      
         <form class="searchForm">
           <input type="text" id="searchBox" name="" placeholder="Search...">
-          <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
+          <button type="submit" id="searchBtn" class="btn btn-dark btn-md fa fa-search"></button> 
         </form>
         <br></br>
         <h6>Click on the <i class="fa fa-microphone"></i> to add podcast to your collection.</h6>
@@ -63,9 +78,7 @@
                 {{}}                  
             </div>            
           </div>
-          <br></br>
-          <br></br>
-          <br></br>
+
           <div class="nameContainer col-12">
           <form class="nameForm">
             <input type="text" id="nameBox" name="" placeholder="Name Collection">
