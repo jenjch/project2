@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,11 +25,23 @@
 
     <div class="jumbotron col-7">
       <h1 class="display-4">Welcome to Podcast Collection!</h1>
-      <p class="lead">Would you like to search for Podcasts and create your collection, or would you rather view other's collections?</p>
+      <p class="lead">Start your podcast collection here!</p>
       <hr class="my-4">
-      <p>Would you like to search for Podcasts and create your collection, or would you rather view other's collections?</p>
+      <p class="input">Collection Title</p>
       <br></br>
-      <a class="btn btn-dark btn-lg btnLeft" href="search.html" role="button">Search Podcasts</a>
+      <form class="collectionInput">
+        <input type="text" id="colNameIn" name="" placeholder="Search...">
+      </form>
+      <br></br>
+      <p class="input">Collection Description</p>
+      <br></br>
+      <form class="collectionInput">
+        <input type="text" id="colDescriptionIn" name="" placeholder="Search...">
+      
+      </form>
+      <br></br>
+      <br></br>
+      <a id="collectionBtn" class="btn btn-dark btn-lg btnLeft" href="search.html" role="button">Create New Collection</a>
       <a class="btn btn-dark btn-lg btnRight" href="collections.html" role="button">View Collections</a>
       <p class="mt-5 mb-3 text-muted">Copyright &copy; 2020 Jenny, Andre, Nathan, Cohen. All Rights Reserved. </p>
     </div>
