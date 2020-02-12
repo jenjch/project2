@@ -17,18 +17,23 @@ module.exports = function(app) {
 
 // 6 routes tested - Andre Barreto 02/09
 
-//POST route to create a new User
-    app.post("/api/user", function(req, res) {
-//   // Creates a user with the data available to us in req.body
-     console.log(req.body);
-     db.User.create({
-      username: req.body.username,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      }).then(function(dbUser) {
+/////////////////////  PLEASE DONT DELETE ANY COMMENTED OUR ROUTES, I AM WORKING ON THEM AND WILL CLEAN UP CODE LATER> TKS
+ 
+ // POST route for creating a new User
+ app.post("/api/user", function(req, res) {
+  console.log(req.body);
+  // create takes an argument of an object describing the item we want to
+  // insert into our table. In this case we just we pass in an object with a text
+  // and complete property (req.body)
+  db.User.create({
+    username: req.body.username,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name
+  }).then(function(dbUser) {
+    // We have access to the todo dbUser as an argument inside of the callback function
     res.json(dbUser);
   });
- });
+});
 
 
 //DELETE route to delete a user based on user id
@@ -56,14 +61,46 @@ app.delete("/api/user/:id", function(req, res) {
       res.json(dbUser);
     });
   });
-});
 
 
-      res.json(dbUser);
-    });
+  // GET route for getting podcasts based on query parameter Title
+  app.get("/api/search/:title", function(req, res) {
+    
+    // findAll returns all entries based on parameter for query
+    //in this case looking in table Podcasts for those matching title from req.
+    db.Podcast.findAll({
+      where: {
+        title: req.params.title
+      },
+    })
+      .then(function(dbPodcastTitle) {
+        res.json(dbPodcastTitle);
+      });
   });
+  //end of GET route for podcasts based on title
 
 
+  // GET route for getting podcasts based on query parameter Author
+  app.get("/api/searchau/:author", function(req, res) {
+    
+    // findAll returns all entries based on parameter for query
+    //in this case looking in table Podcasts for those matching author from req.
+    db.Podcast.findAll({
+      where: {
+        author: req.params.author
+      },
+    })
+      .then(function(dbPodcastAuthor) {
+        res.json(dbPodcastAuthor);
+      });
+  });
+  //end of GET route for podcasts based on Author
+
+
+
+ 
+
+  // POST route for saving a new collection to a specific user
   // as per Russel's request this route will be left for later due to the need of username entered  and clarifications
   //Do not use yet
   app.post("/api/collections", function(req, res) {
@@ -90,11 +127,31 @@ app.delete("/api/user/:id", function(req, res) {
       });
   });
 
+
+// tested in Postman 2/10 - Jenny 
+// for finding all collections by user id, return as JSON, with cascading [include:] model, to show Podcast data in the same response
+app.get("/api/:user/collections", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.user
+
+  
+// tested in Postman 2/10 - Jenny 
+// for finding all collections by user id, return as JSON, with cascading [include:] model, to show Podcast data in the same response
+app.get("/api/:user/collections", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.user
       },
       include: [
         {
           model: db.Collection,
-
+          
+          include: [
+            {
+              model: db.Podcast,
+            }
+          ]
         }
       ]
     }).then(function(CollectionsData) {
