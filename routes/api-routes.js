@@ -128,13 +128,6 @@ app.delete("/api/user/:id", function(req, res) {
   });
 
 
-// tested in Postman 2/10 - Jenny 
-// for finding all collections by user id, return as JSON, with cascading [include:] model, to show Podcast data in the same response
-app.get("/api/:user/collections", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.params.user
-
   
 // tested in Postman 2/10 - Jenny 
 // for finding all collections by user id, return as JSON, with cascading [include:] model, to show Podcast data in the same response
