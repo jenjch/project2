@@ -2,8 +2,22 @@
 
     <div id="main" class="container">
       <div class="jumbotron col-10">
+          <a class="btn btn-dark btn-xs btnLeft" href="/" role="button">Home</a>
+
         <h1 class="display-4">Search Podcasts!</h1>
-        <p class="lead">You can search for Podcasts by...</p>
+        <p class="lead">You can search for Podcasts by Title or Author.</p>
+
+                <div class="dropdown">
+          <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Search By:
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Search By Title</a>
+            <a class="dropdown-item" href="#">Search By Author</a>
+          </div>
+        </div>        
+        <br></br>
+
         <form class="searchForm">
 
           <input type="text" id="searchBox" name="" placeholder="Search...">
@@ -20,33 +34,31 @@
           <div class="appBoxes col-4" >
             <div id="sResults" class="container"></div>
               <h5>Search Results:</h5>
-                <div>
+                <div id="searchResults">
+                  Testing
                   {{!-- <form action="{{this.id}}?_method=PUT" method="POST">
                     {{}}   --}}
-                    <button type="submit" class="Button fa fa-microphone"></button>
+                    <button type="submit" class="micButton fa fa-microphone"></button>
                   </form>
                 </div>
           </div>
 
         <!---- Middle  Column -------------->
           <div class="col-4">
-         
-        
+     
           </div>
 
         <!------ Collection Column --------------->
           <div class="appBoxes col-4">
-            <div id="devoured" class="container">
+            <div class="container">
               <h5>My Collection:</h5>
                 {{!-- {{}}
-                {{}} --}}
-                  
+                {{}} --}}                  
             </div>            
           </div>
         </div>
         
-        <a class="btn btn-dark btn-lg btnLeft" href="/" role="button">Home</a>
-
+      
       </div>     
     </div>
 
