@@ -9,20 +9,21 @@ $("#searchBtn").on("click", function() {
   .trim();
 console.log(pCastSearch);
   $.get("/api/search/" + pCastSearch, function(data) {
-    console.log(data);
-    
-
     $("#searchResults").empty();
-
-    $("#searchResults").append("<img id= 'imgResult' src=" + data[0].image + "/>");
-    $("#searchResults").append("<h6>Title: " + data[0].title + "</h6>");
-    $("#searchResults").append("<h6>Language: " + data[0].language + "</h6>");
-    $("#searchResults").append("<h6>Author: " + data[0].author + "</h6>");
-
+    console.log(data);
+    data.forEach(searchResult => {
+      
+    $("#searchResults").append(searchResult.id);
+    $("#searchResults").append("<img id= 'imgResult' src=" + searchResult.image + "/>");
+    $("#searchResults").append("<h6>Title: " + searchResult.title + "</h6>");
+    $("#searchResults").append("<h6>Language: " + searchResult.language + "</h6>");
+    $("#searchResults").append("<h6>Author: " + searchResult.author + "</h6>");
+    });
   });
 }) 
 }
 )
+
 
 
 // id: 20
