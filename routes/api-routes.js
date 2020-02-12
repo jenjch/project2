@@ -52,6 +52,18 @@ app.delete("/api/user/:id", function(req, res) {
 });
 
 
+//DELETE -  route to delete a Collection
+app.delete("/api/collections/:id", function(req, res) {
+  // Delete the Collection with the id available to us in req.params.id
+  db.Collection.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(dbCollection) {
+    res.json(dbCollection);
+  });
+});
+
   // GET route for getting users based on username
   app.get("/api/user/:username", function(req, res) {
     // Find one User with the id in req.params.id and return them to the user with res.json
@@ -104,32 +116,33 @@ app.delete("/api/user/:id", function(req, res) {
   //end of GET route for podcasts based on Author
 
 
-
+  app.post("/api/user", function(req, res) {
+    console.log(req.body);
+    // create takes an argument of an object describing the item we want to
+    // insert into our table. In this case we just we pass in an object with a text
+    // and complete property (req.body)
+    db.User.create({
+      username: req.body.username,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name
+    }).then(function(dbUser) {
+      // We have access to the todo dbUser as an argument inside of the callback function
+      res.json(dbUser);
+    });
+  });
  
 
-  // POST route for saving a new collection to a specific user
-  // as per Russel's request this route will be left for later due to the need of username entered  and clarifications
-  //Do not use yet
+  // POST route for saving a new collection 
   app.post("/api/collections", function(req, res) {
     console.log(req.body);
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
     db.Collection.create({
-      // deleted this because foreign key taken care of by sequelize
-      // user_id : req.body.user_id,
       collection_name: req.body.collection_name,
       description: req.body.description
     })
       .then(function(dbCollection) {
-
-        //Russell's rec at the start of class to add, need to clarify
-        dbCollection.addUser(req.body.enteredUsername);
-        // need to do a find to match userId
-      })
-
-      .then(function(dbCollection) {
-        // We have access to the new one as an argument inside of the callback function
         res.json(dbCollection);
       });
   });
