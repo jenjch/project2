@@ -11,8 +11,36 @@
         <div class="card-header">{{collection_name}}</div>
         <div class="card-body">
           <p class="card-text">{{description}}</p>
-          <button type="submit" data-collectionId="{{id}}" class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
-          <button type="submit" data-collectionId="{{id}}" class="micButton btn btn-dark btn-md fa fa-microphone"> See Collection</button>
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">website</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                {{#each Podcasts}}
+                <tr>
+                <th scope="row">{{inc @index}}</th>
+                <td><img src="{{image}}" height="50" /></td>
+                <td>{{title}}</td>
+                <td>{{author}}</td>
+                <td>{{website}}</td>
+                </tr>
+                 {{/each}}
+                 
+            </tbody>
+          </table>
+
+          <button type="button" data-collectionId="{{id}}"
+            class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
+          <button type="submit" data-collectionId="{{id}}" class="micButton btn btn-dark btn-md fa fa-microphone"> Send
+            Collection</button>
         </div>
         {{/each}}
 
@@ -23,3 +51,8 @@
     </div>
 
 </body>
+
+Template.registerHelper('incremented', function (index) {
+    index++;
+    return index;
+});

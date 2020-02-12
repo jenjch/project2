@@ -32,7 +32,14 @@ module.exports = function(app) {
 
     // to use handlebars, moved route to html-routes file 
 
-    db.Collection.findAll({})
+    db.Collection.findAll({
+
+      include: [
+        {
+          model: db.Podcast
+        }
+      ]
+    })
     .then(function(dbCollectionsData) {
       const data = {
         // going to pass the dbCollectionsData results to the render for handlebars (results as key)
