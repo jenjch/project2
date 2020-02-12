@@ -7,6 +7,9 @@
 
 // Requiring our models
 var db = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+
 // const Sequelize = require('sequelize');
 
 // Routes
@@ -70,7 +73,9 @@ app.delete("/api/user/:id", function(req, res) {
     //in this case looking in table Podcasts for those matching title from req.
     db.Podcast.findAll({
       where: {
-        title: req.params.title
+        title: {
+               [Op.like]  : `%${req.params.title}%`
+        }
       },
     })
       .then(function(dbPodcastTitle) {
@@ -87,7 +92,9 @@ app.delete("/api/user/:id", function(req, res) {
     //in this case looking in table Podcasts for those matching author from req.
     db.Podcast.findAll({
       where: {
-        author: req.params.author
+        author: {
+              [Op.like] : `%${req.params.author}%`
+        } 
       },
     })
       .then(function(dbPodcastAuthor) {
@@ -128,12 +135,6 @@ app.delete("/api/user/:id", function(req, res) {
   });
 
 
-// tested in Postman 2/10 - Jenny 
-// for finding all collections by user id, return as JSON, with cascading [include:] model, to show Podcast data in the same response
-app.get("/api/:user/collections", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.params.user
 
   
 // tested in Postman 2/10 - Jenny 
