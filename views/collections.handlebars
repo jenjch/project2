@@ -11,7 +11,7 @@
         <div class="card-header">{{collection_name}}</div>
         <div class="card-body">
           <p class="card-text">{{description}}</p>
-          
+
           <table class="table">
             <thead>
               <tr>
@@ -23,24 +23,31 @@
               </tr>
             </thead>
             <tbody>
-              
-                {{#each Podcasts}}
-                <tr>
+
+              {{#each Podcasts}}
+              <tr>
+                {{!-- using math/increment helper that was put in the server.js code after handlebars loads --}}
                 <th scope="row">{{inc @index}}</th>
                 <td><img src="{{image}}" height="50" /></td>
                 <td>{{title}}</td>
                 <td>{{author}}</td>
-                <td>{{website}}</td>
-                </tr>
-                 {{/each}}
-                 
+                <td><a href="{{website}}" target="_blank">{{website}}</a></td>
+              </tr>
+              {{/each}}
+
             </tbody>
           </table>
 
           <button type="button" data-collectionId="{{id}}"
             class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
-          <button type="submit" data-collectionId="{{id}}" class="micButton btn btn-dark btn-md fa fa-microphone"> Send
+
+          <button type="submit" data-collectionId="{{id}}" class="sendCollection micButton btn btn-dark btn-md fa fa-microphone"> Send
             Collection</button>
+
+          <form class="collectionInput">
+            <input type="text" id="inputEmail" name="email" placeholder="enter friend's email here!">
+          </form>
+
         </div>
         {{/each}}
 
@@ -53,6 +60,6 @@
 </body>
 
 Template.registerHelper('incremented', function (index) {
-    index++;
-    return index;
+index++;
+return index;
 });
