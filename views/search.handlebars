@@ -1,19 +1,21 @@
-    <div id="main" class="container">
-      <div class="jumbotron col-10">
+    <div id="main" class="container col-12">
+      <div class="jumbotron col-8">
           <a class="btn btn-dark btn-xs btnLeft" href="/" role="button">Home</a>
 
         <h1 class="display-4">Search Podcasts!</h1>
         <p class="lead">You can search for Podcasts by Title or Author.</p>
 
-                <div class="dropdown">
-          <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Search By:
-          </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Search By Title</a>
-            <a class="dropdown-item" href="#">Search By Author</a>
-          </div>
-        </div>        
+
+  <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline1" name="customRadioInline1" value="1" checked class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline1">Search by Title:</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline2" name="customRadioInline1" value="0" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline2" >Search by Author:</label>
+        </div>
+
+
         <br></br>
 
         <form class="searchForm">
@@ -25,30 +27,27 @@
         </form>
         <br></br>
         <h6>Click on the <i class="fa fa-microphone"></i> to add podcast to your collection.</h6>
-        <hr class="my-4">
+        <hr class="my-5">
         
         <div class="row">        
           
           <!-- Search Results ------->
-          <div class="appBoxes col-4" >
+          <div class="appBoxes col-5" >
             <div id="sResults" class="container"></div>
               <h5>Search Results:</h5>
                 <div id="searchResults">
-                  Testing
-                  {{!-- <form action="{{this.id}}?_method=PUT" method="POST">
-                    {{}}   --}}
-                    <button type="submit" class="micButton fa fa-microphone"></button>
+
                   </form>
                 </div>
           </div>
 
         <!---- Middle  Column -------------->
-          <div class="col-4">
+          <div class="col-2">
      
           </div>
 
         <!------ Collection Column --------------->
-          <div class="appBoxes col-4">
+          <div class="appBoxes col-5">
             <div class="container">
               <h5>My Collection:</h5>
                 {{!-- {{}}
