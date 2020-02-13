@@ -12,7 +12,7 @@
         <div class="card-body">
           <p class="card-text">{{description}}</p>
 
-          <table class="table">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -26,9 +26,9 @@
 
               {{#each Podcasts}}
               <tr>
-                {{!-- using math/increment helper that was put in the server.js code after handlebars loads --}}
+                {{!-- using math/increment helper (to start index at 1 instead of 1) that was put in the server.js code after handlebars loads --}}
                 <th scope="row">{{inc @index}}</th>
-                <td><img src="{{image}}" height="50" /></td>
+                <td><img src="{{image}}" height="40" /></td>
                 <td>{{title}}</td>
                 <td>{{author}}</td>
                 <td><a href="{{website}}" target="_blank">{{website}}</a></td>
@@ -41,11 +41,13 @@
           <button type="button" data-collectionId="{{id}}"
             class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
 
-          <button type="submit" data-collectionId="{{id}}" class="sendCollection micButton btn btn-dark btn-md fa fa-microphone"> Send
-            Collection</button>
-
-          <form class="collectionInput">
+          <form class="sendEmail">
+            <input type="text" id="inputName" name="name" placeholder="enter friend's name here!">
             <input type="text" id="inputEmail" name="email" placeholder="enter friend's email here!">
+            
+            <button type="submit" data-collectionId="{{id}}"
+              class="sendCollection micButton btn btn-dark btn-md fa fa-microphone"> Send
+              Collection</button>
           </form>
 
         </div>
@@ -58,8 +60,3 @@
     </div>
 
 </body>
-
-Template.registerHelper('incremented', function (index) {
-index++;
-return index;
-});
