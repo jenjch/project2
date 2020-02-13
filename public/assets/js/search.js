@@ -1,6 +1,7 @@
 // wrap; make sure we wait to attach our handlers until the DOM is fully loaded.
 
 $(document).ready( function(){
+  
 $("#searchBtn").on("click", function() {
  event.preventDefault();
   console.log("CLICK!")
@@ -8,21 +9,32 @@ $("#searchBtn").on("click", function() {
   pCastSearch = pCastSearch.toLowerCase()
   .trim();
 console.log(pCastSearch);
+
+
   $.get("/api/search/" + pCastSearch, function(data) {
     $("#searchResults").empty();
     console.log(data);
+
     data.forEach(searchResult => {
       
-    $("#searchResults").append(searchResult.id);
+    // $("#searchResults").append(searchResult.id);
     $("#searchResults").append("<img id= 'imgResult' src=" + searchResult.image + "/>");
     $("#searchResults").append("<h6>Title: " + searchResult.title + "</h6>");
-    $("#searchResults").append("<h6>Language: " + searchResult.language + "</h6>");
-    $("#searchResults").append("<h6>Author: " + searchResult.author + "</h6>");
+    // $("#searchResults").append("<h6>Language: " + searchResult.language + "</h6>");
+    // $("#searchResults").append("<h6>Author: " + searchResult.author + "</h6>");
+    var saveBtns = $("<button>").addClass("saveBtn micButton fa fa-microphone").attr("id", "addToBtn")
+    $("#searchResults").append(saveBtns)
+    var hr = $("<hr>").addClass("my-4")
+    $("#searchResults").append(hr)
+
     });
   });
-}) 
-}
-)
+}); 
+
+
+});
+
+
 
 
 
@@ -37,6 +49,8 @@ console.log(pCastSearch);
 // itunes_id: 959773870
 // createdAt: "2020-02-02T12:00:00.000Z"
 // updatedAt: "2020-02-02T12:00:00.000Z"
+
+
 
 
 
