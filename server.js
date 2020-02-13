@@ -24,6 +24,14 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// helper function for using {{inc @index}} in collections page to index each podcast entry. Helper needed to start at 1 instead of 0
+// https://stackoverflow.com/questions/22103989/adding-offset-to-index-when-looping-through-items-in-handlebars
+var Handlebars = require('handlebars');
+
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
