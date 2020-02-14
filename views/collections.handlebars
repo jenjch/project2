@@ -1,62 +1,77 @@
 <body>
 
   <div class="jumbotron col-7">
-    <h1 class="display-4">Welcome to Your Podcast Collections! <a class="btn btn-dark btn-lg btnLeft" href="/"
+    <h1 class="display-4 ">Welcome to Your Podcast Collections! <a class="btn btn-dark btn-lg btnLeft" href="/"
         role="button">Home</a></h1>
 
-    <div class="card-group" id="yourCollections">
+    {{!-- <div class="card-group" id="yourCollections"> --}}
+
+    <div class="accordion" id="accordionCollection">
 
       {{#each results}}
       <div class="card">
-        <div class="card-header">{{collection_name}}</div>
-        <div class="card-body">
-          <p class="card-text">{{description}}</p>
-
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col"></th>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col">website</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {{#each Podcasts}}
-              <tr>
-                {{!-- using math/increment helper (to start index at 1 instead of 1) that was put in the server.js code after handlebars loads --}}
-                <th scope="row">{{inc @index}}</th>
-                <td><img src="{{image}}" height="40" /></td>
-                <td>{{title}}</td>
-                <td>{{author}}</td>
-                <td><a href="{{website}}" target="_blank">{{website}}</a></td>
-              </tr>
-              {{/each}}
-
-            </tbody>
-          </table>
-
-          <button type="button" data-collectionId="{{id}}"
-            class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
-
-          <form class="sendEmail">
-            <input type="text" id="inputName" name="name" placeholder="enter friend's name here!">
-            <input type="text" id="inputEmail" name="email" placeholder="enter friend's email here!">
-            
-            <button type="submit" data-collectionId="{{id}}"
-              class="sendCollection micButton btn btn-dark btn-md fa fa-microphone"> Send
-              Collection</button>
-          </form>
-
+        <div class="card-header" id="heading{{id}}">
+          <h2 class="mb-0 text-center">
+            <button class="float-left btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{id}}"
+              aria-expanded="false" aria-controls="collapse{{id}}"><i class="fa fa-plus"></i>
+              {{collection_name}}: {{description}}
+            </button>
+          </h2>
         </div>
-        {{/each}}
+
+        <div id="collapse{{id}}" class="collapse" aria-labelledby="heading{{id}}"
+          data-parent="#accordionCollection">
+          <div class="card-body">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col"></th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Website</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {{#each Podcasts}}
+                <tr>
+                  {{!-- using math/increment helper (to start index at 1 instead of 1) that was put in the server.js code after handlebars loads --}}
+                  <th scope="row">{{inc @index}}</th>
+                  <td><img src="{{image}}" height="40" /></td>
+                  <td>{{title}}</td>
+                  <td>{{author}}</td>
+                  <td><a href="{{website}}" target="_blank">{{website}}</a></td>
+                </tr>
+                {{/each}}
+
+              </tbody>
+            </table>
+
+            <button type="button" data-collectionId="{{id}}"
+              class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
+
+            <form class="sendEmail float-left">
+
+               <input type="text" class= "nameInput" id="inputEmail{{id}}" name="email" placeholder="enter friend's name here!">
+              <input type="text" class= "emailInput" id="inputName{{id}}" name="name" placeholder="enter friend's email here!">
+
+
+              <button data-collectionId="{{id}}" class="sendCollection micButton btn btn-dark btn-md fa fa-microphone">
+                Send
+                Collection</button>
+            </form>
+
+          </div>
+        </div>
 
       </div>
-
-
-      <p class="mt-5 mb-3 text-muted">Copyright &copy; 2020 Jenny, Andre, Nathan, Cohen. All Rights Reserved. </p>
+      {{/each}}
     </div>
+    {{!-- </div> --}}
+
+    <p class="mt-5 mb-3 text-muted">Copyright &copy; 2020 Jenny, Andre, Nathan, Cohen. All Rights Reserved. </p>
+  </div>
 
 </body>
