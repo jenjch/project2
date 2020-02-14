@@ -43,7 +43,7 @@ require("./routes/api-routes.js")(app);
 // =============================================================
 
 // removed ({ force: true }) from db.sequelize.sync to not drop tables (like our seeded database one) once the server is restarted. Need to double check it doesn't have unintended consequences
-db.sequelize.sync().then(function() {
+db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
