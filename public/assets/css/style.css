@@ -1,7 +1,4 @@
 html,
-body {
-  height: 100%;
-}
 
 body {
   background-image: url("../img/background.jpg");
@@ -18,6 +15,22 @@ body {
   padding-bottom: 40px;
 }
 
+#searchBox {
+  width: 95%;
+}
+
+.btn {
+  float: Right;
+}
+
+.nameForm {
+  float: right;
+  border: thick blue;
+}
+
+.dropdown {
+  float: left;
+}
 
 .jumbotron {
   width: 100%;
@@ -40,13 +53,19 @@ body {
 }
 
 .btnLeft {
-
+float: left;
 }
+
 .btnRight {
   float: right;
 
 }
 
+.micButton {
+  float: right;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+ }
 
 #sResults {
   border: thin black;
@@ -54,4 +73,13 @@ body {
 
 .appBoxes {
   border: thin black solid;
+}
+
+#imgResult {
+  max-width: 45%;
+}
+
+.input {
+
+float: left;
 }

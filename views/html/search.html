@@ -16,20 +16,33 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <script src="assets/js/search.js" type="text/javascript"></script>
     <title>Search Podcasts!</title>
   </head>
   <body>
 
     <div id="main" class="container">
       <div class="jumbotron col-10">
-        <h1 class="display-4">Search Podcasts!</h1>
-        <p class="lead">You can search for Podcasts by...</p>
-        <form class="searchForm">
+        <a class="btn btn-dark btn-xs btnLeft" href="./index.html" role="button">Home</a>
 
+        <h1 class="display-4">Search Podcasts!</h1>
+        <p class="lead">You can search for Podcasts by Title or Author...</p>
+
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline1">Search by Title:</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline2">Search by Author:</label>
+        </div>
+        
+        <br></br>
+      
+        <form class="searchForm">
           <input type="text" id="searchBox" name="" placeholder="Search...">
-          <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
-           
+          <button type="submit" id="searchBtn" class="btn btn-dark btn-md fa fa-search"></button> 
         </form>
         <br></br>
         <h6>Click on the <i class="fa fa-microphone"></i> to add podcast to your collection.</h6>
@@ -44,7 +57,7 @@
                 <div>
                   <form action="{{this.id}}?_method=PUT" method="POST">
                     {{}}  
-                    <button type="submit" class="Button fa fa-microphone"></button>
+                    <button type="submit" class="micButton fa fa-microphone"></button>
                   </form>
                 </div>
           </div>
@@ -57,14 +70,23 @@
 
         <!------ Collection Column --------------->
           <div class="appBoxes col-4">
-            <div id="devoured" class="container">
+            <div class="container">
               <h5>My Collection:</h5>
                 {{}}
-                {{}}
-                  
+                {{}}                  
             </div>            
           </div>
+
+          <div class="nameContainer col-12">
+          <form class="nameForm">
+            <input type="text" id="nameBox" name="" placeholder="Name Collection">
+            <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
+          </form>
+        </div>  
+
+
         </div>
+
       </div>     
     </div>
 

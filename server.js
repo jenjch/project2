@@ -3,6 +3,7 @@
 // Dependencies
 // =============================================================
 const express = require("express");
+// const sendmail = require('sendmail')();
 
 // Sets up the Express App
 // =============================================================
@@ -24,6 +25,25 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// move to api routes
+// sendmail({
+//     from: 'podcastAdmn@gmail.com',
+//     to: 'podcastAdmn@gmail.com',
+//     subject: 'Podcast Collection Recommendation!',
+//     html: '<h1>https://github.com/jenjch/project2/</h1>',
+//   }, function(err, reply) {
+//     console.log(err && err.stack);
+//     console.dir(reply);
+// });
+
+// helper function for using {{inc @index}} in collections page to index each podcast entry. Helper needed to start at 1 instead of 0
+// https://stackoverflow.com/questions/22103989/adding-offset-to-index-when-looping-through-items-in-handlebars
+var Handlebars = require('handlebars');
+
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);

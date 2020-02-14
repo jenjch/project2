@@ -1,54 +1,60 @@
-<body>
+    <div id="main" class="container col-12">
+      <div class="jumbotron col-8">
+          <a class="btn btn-dark btn-xs btnLeft" href="/" role="button">Home</a>
 
-    <div id="main" class="container">
-      <div class="jumbotron col-10">
         <h1 class="display-4">Search Podcasts!</h1>
-        <p class="lead">You can search for Podcasts by...</p>
+        <p class="lead">You can search for Podcasts by Title or Author.</p>
+
+
+  <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline1" name="customRadioInline1" value="1" checked class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline1">Search by Title:</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline2" name="customRadioInline1" value="0" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline2" >Search by Author:</label>
+        </div>
+
+
+        <br></br>
+
         <form class="searchForm">
 
           <input type="text" id="searchBox" name="" placeholder="Search...">
-          <button type="submit" class="btn btn-dark btn-md fa fa-search"></button> 
+
+          <button type="submit" id="searchBtn" class="btn btn-dark btn-md fa fa-search"></button> 
            
         </form>
         <br></br>
-        <h6>Click on the <i class="fa fa-microphone"></i> to add podcast to your collection.</h6>
-        <hr class="my-4">
+        <h6>Click on the <i class="fa fa-microphone fa-2x"></i> to add podcast to your collection.</h6>
+        <hr class="my-5">
         
-        <div class="row">        
+       
           
           <!-- Search Results ------->
-          <div class="appBoxes col-4" >
+          <div class="appBoxes col-10" >
             <div id="sResults" class="container"></div>
               <h5>Search Results:</h5>
-                <div>
-                  {{!-- <form action="{{this.id}}?_method=PUT" method="POST">
-                    {{}}   --}}
-                    <button type="submit" class="Button fa fa-microphone"></button>
+                <div id="searchResults">
+
                   </form>
                 </div>
           </div>
 
-        <!---- Middle  Column -------------->
-          <div class="col-4">
-         
-        
+        {{!-- <!---- Middle  Column -------------->
+          <div class="col-2">
+     
           </div>
 
         <!------ Collection Column --------------->
-          <div class="appBoxes col-4">
-            <div id="devoured" class="container">
+          <div class="appBoxes col-5">
+            <div id="sResults" class="container">
               <h5>My Collection:</h5>
-                {{!-- {{}}
-                {{}} --}}
-                  
-            </div>            
+                <div id="addToCollection"></div> --}}
+        
           </div>
         </div>
         
-        <a class="btn btn-dark btn-lg btnLeft" href="/" role="button">Home</a>
-
+      
       </div>     
     </div>
-
-
-  </body>
