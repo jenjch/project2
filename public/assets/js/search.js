@@ -1,5 +1,6 @@
 $(document).ready( function(){
-  
+  //---------- Click event from search button on Search page, seraches podcasts database for terms
+  // in the input box----------------------------------------
   $("#searchBtn").on("click", function() {
    event.preventDefault();
     console.log("CLICK!")
@@ -7,12 +8,14 @@ $(document).ready( function(){
     pCastSearch = pCastSearch.toLowerCase()
     .trim();
   console.log(pCastSearch);
-  
-  var istitle = $('input[name=customRadioInline1]:checked').val()
-  
+
+  //----------------Checking status of radio buttons then get from database-----------------
+  var istitle = $('input[name=customRadioInline1]:checked').val()  
     $.get("/api/search/" + pCastSearch + "/" + istitle, function(data) {
       $("#searchResults").empty();
       console.log(data);
+
+  //---------------for each result, appends to results div-----------------------
   
       data.forEach(searchResult => {
         
@@ -21,11 +24,15 @@ $(document).ready( function(){
       $("#searchResults").append("<h6>Title: " + searchResult.title + "</h6>");
       // $("#searchResults").append("<h6>Language: " + searchResult.language + "</h6>");
       // $("#searchResults").append("<h6>Author: " + searchResult.author + "</h6>");
-      var saveBtns = $("<button>").addClass("saveBtn micButton fa fa-microphone fa-2x").attr("id", "addToBtn")
+
+  //------------------renders button in search result to add podcast to collection------------- 
+
+      var saveBtns = $("<button>").addClass("saveBtn micButton fa fa-microphone fa-2x addToBtn")
       .attr("podcastid", searchResult.id);
       $("#searchResults").append(saveBtns)
 
-      $("#addToBtn").on("click", function() {
+  //--------------Click event for button in results to add podcast to collection.----------
+      $(".addToBtn").on("click", function() {
         event.preventDefault();
         console.log("Boom!");
         var NewPodcastID = $(this).attr("podcastid");
@@ -38,11 +45,9 @@ $(document).ready( function(){
       var hr = $("<hr>").addClass("my-4")
       $("#searchResults").append(hr)
   
+        });
       });
-    });
-  }); 
-  
-  
+    });  
   });
   
 
