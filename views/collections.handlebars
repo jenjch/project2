@@ -4,25 +4,27 @@
     <h1 class="display-4 ">Welcome to Your Podcast Collections! <a class="btn btn-dark btn-lg btnLeft" href="/"
         role="button">Home</a></h1>
 
-    {{!-- <div class="card-group" id="yourCollections"> --}}
-
     <div class="accordion" id="accordionCollection">
 
+      {{!-- shows each collection results from the html-route (without the sequelize metadata interferring) --}}
+      {{!-- uses the colleciton id to create unique classes/ids in the #each loop --}}
       {{#each results}}
       <div class="card">
         <div class="card-header" id="heading{{id}}">
           <h2 class="mb-0 text-center">
-            <button class="float-left btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{id}}"
-              aria-expanded="false" aria-controls="collapse{{id}}"><i class="fa fa-plus"></i>
+            <button class="float-left btn btn-link collapsed" type="button" data-toggle="collapse"
+              data-target="#collapse{{id}}" aria-expanded="false" aria-controls="collapse{{id}}"><i
+                class="fa fa-plus"></i>
+                {{!-- display the collection name and description col data in one line. Will be buttons for the accordion toggle --}}
               {{collection_name}}: {{description}}
             </button>
           </h2>
         </div>
 
-        <div id="collapse{{id}}" class="collapse" aria-labelledby="heading{{id}}"
-          data-parent="#accordionCollection">
+        <div id="collapse{{id}}" class="collapse" aria-labelledby="heading{{id}}" data-parent="#accordionCollection">
           <div class="card-body">
 
+            {{!-- use table styling from bootstrap --}}
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -35,9 +37,10 @@
               </thead>
               <tbody>
 
+                {{!-- each loop within the above Collection each loop - show each podcast included in a collection as each row in the table (title, author, website cols) --}}
                 {{#each Podcasts}}
                 <tr>
-                  {{!-- using math/increment helper (to start index at 1 instead of 1) that was put in the server.js code after handlebars loads --}}
+                  {{!-- using math/increment helper (to start index at 1 instead of 0) that was put in the server.js code after handlebars loads --}}
                   <th scope="row">{{inc @index}}</th>
                   <td><img src="{{image}}" height="40" /></td>
                   <td>{{title}}</td>
@@ -49,13 +52,17 @@
               </tbody>
             </table>
 
+            {{!-- Delete button triggers the api-route for delete by data-attribute on button (on click) --}}
             <button type="button" data-collectionId="{{id}}"
               class="deleteCollection micButton btn btn-danger btn-md fa fa-trash"> Delete</button>
 
+            {{!-- name and email input fields captured by Send Collection button. POST in collections.js will send this and specific Collection info to backend. --}}
             <form class="sendEmail float-left">
 
-               <input type="text" class= "nameInput" id="inputEmail{{id}}" name="email" placeholder="enter friend's name here!">
-              <input type="text" class= "emailInput" id="inputName{{id}}" name="name" placeholder="enter friend's email here!">
+              <input type="text" class="nameInput" id="inputEmail{{id}}" name="email"
+                placeholder="enter friend's name here!">
+              <input type="text" class="emailInput" id="inputName{{id}}" name="name"
+                placeholder="enter friend's email here!">
 
 
               <button data-collectionId="{{id}}" class="sendCollection micButton btn btn-dark btn-md fa fa-microphone">
@@ -69,7 +76,6 @@
       </div>
       {{/each}}
     </div>
-    {{!-- </div> --}}
 
     <p class="mt-5 mb-3 text-muted">Copyright &copy; 2020 Jenny, Andre, Nathan, Cohen. All Rights Reserved. </p>
   </div>
