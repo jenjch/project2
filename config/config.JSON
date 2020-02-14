@@ -1,8 +1,8 @@
 {
   "development": {
 
-    "username": "root",
-    "password": "lilac",
+    "username": "OnTheRocks",
+    "password": "OnTheRocks",
 
     "database": "podcastsDB",
     "host": "127.0.0.1",
