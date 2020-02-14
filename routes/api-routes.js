@@ -85,27 +85,14 @@ module.exports = function(app) {
   });
 
   // GET route for getting podcasts based on query parameter Title
-<<<<<<< HEAD
-  app.get("/api/search/:title", function(req, res) {
-=======
   app.get("/api/search/:query/:istitle", function(req, res) {
     
->>>>>>> fbea45a6759649221f0080036aaf07164d07ff52
     // findAll returns all entries based on parameter for query
     //in this case looking in table Podcasts for those matching title from req.
     console.log(req.params)
     db.Podcast.findAll(req.params.istitle === "1"?{
       where: {
         title: {
-<<<<<<< HEAD
-          [Op.like]: `%${req.params.title}%`
-        }
-      }
-    }).then(function(dbPodcastTitle) {
-      res.json(dbPodcastTitle);
-    });
-  });
-=======
                [Op.like]  : `%${req.params.query}%`
         }
       },
@@ -121,26 +108,9 @@ module.exports = function(app) {
         res.json(dbPodcastTitle);
       });  
 });
->>>>>>> fbea45a6759649221f0080036aaf07164d07ff52
   //end of GET route for podcasts based on title
 
   // GET route for getting podcasts based on query parameter Author
-<<<<<<< HEAD
-  app.get("/api/searchau/:author", function(req, res) {
-    // findAll returns all entries based on parameter for query
-    //in this case looking in table Podcasts for those matching author from req.
-    db.Podcast.findAll({
-      where: {
-        author: {
-          [Op.like]: `%${req.params.author}%`
-        }
-      }
-    }).then(function(dbPodcastAuthor) {
-      res.json(dbPodcastAuthor);
-    });
-  });
-  //end of GET route for podcasts based on Author
-=======
   // app.get("/api/searchau/:author", function(req, res) {
     
   //   // findAll returns all entries based on parameter for query
@@ -157,7 +127,6 @@ module.exports = function(app) {
   //     });
   // });
   // //end of GET route for podcasts based on Author
->>>>>>> fbea45a6759649221f0080036aaf07164d07ff52
 
   app.post("/api/user", function(req, res) {
     console.log(req.body);
@@ -301,7 +270,7 @@ module.exports = function(app) {
       
        // plain "text body
     };
-    
+
     // the response we're sending to front end
 
     transporter.sendMail(mailOptions, function(err, info) {
