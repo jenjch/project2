@@ -1,6 +1,7 @@
 $(document).ready(function() {
   // window.location.href="./collections"
 
+  // for controlling plus/minus symbols added to the bootstrap accordion
   // adds the minus icon for collapse which is open by default
   $(".collapse.show").each(function() {
     $(this)
@@ -27,90 +28,96 @@ $(document).ready(function() {
         .addClass("fa-plus");
     });
 
-  var nameInput = $(".nameInput");
-
-  // var authorList = $("tbody");
-  // var authorContainer = $(".author-container");
-
+  // on click event for sending a specific collection via nodemailer to email
   $(".sendCollection").on("click", function(event) {
-    var emailInput = $(this).parent().find(".emailInput").first().val().trim();
-    var nameInput = $(this).parent().find(".nameInput").first().val().trim();
-    console.log(emailInput);
     event.preventDefault();
-    if (emailInput.length<1) {
-        return alert ("enter email failed")
+
+    console.log("testing send collection click!");
+
+    // grab the value of the nameInput and emailInput (define the relationship of the sendCollection button to the actual input field) .first() is jquery to select to select first matching element (just to be safe)
+    var emailInput = $(this)
+      .parent()
+      .find(".emailInput")
+      .first()
+      .val()
+      .trim();
+    var nameInput = $(this)
+      .parent()
+      .find(".nameInput")
+      .first()
+      .val()
+      .trim();
+    console.log(emailInput);
+    console.log(nameInput);
+
+    // make sure users type at least one character in input
+    if (emailInput.length < 1) {
+      return alert("enter email failed");
     }
-    console.log("testing");
-    // hides the buttons from collection 
-    $(this).parent().hide();
-    $(this).parent().parent().find(".deleteCollection").hide();
-    var collectionContent = $(this).parent().parent().parent().parent().html()
 
-    var emailDeets = { 
-        enteredEmail: emailInput, 
-        enteredName: nameInput,
-        collectionBody: collectionContent
-     };
-    // var email = {enteredEmail: emailInput};
+    if (nameInput.length < 1) {
+      return alert("enter name failed");
+    }
 
+    // hides the name/email input fields and "Send Collection button" from collection when emailing the content  (will apear again on page reload)
+    $(this)
+      .parent()
+      .hide();
+
+    // hides the delete collection button when clicking it (will appear again on page reload)
+    $(this)
+      .parent()
+      .parent()
+      .find(".deleteCollection")
+      .hide();
+
+    // grabs the html of where the specific Collection parent starts (so will include all children podcasts in collection)
+    var collectionContent = $(this)
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .html();
+
+    // var for data sent to api-route for sending email (key values)
+    var emailDeets = {
+      enteredEmail: emailInput,
+      enteredName: nameInput,
+      collectionBody: collectionContent
+    };
+
+    //using .always instead of .then (single call back)
+    //($.post is one of jquery's ways of writing the post)
     $.post("api/send", emailDeets).always(function() {
-      console.log("Added " +"Jenny!");
-      alert("saved!");
-      // reload the page after addition to get the updated list
+      console.log("Email sent!");
+
+      // alert("saved!");
+
+      // reload the page after sending the collection information to get the updated list (and have the input fields and buttons rebuilt with html-route and handlebars upon refresh)
       location.reload();
     });
-
-    /**
-         * , function(err, data) {
-
-            console.log (data);
-            console.log ("success!");
-            
-            location.reload();
-        }
-         */
-
-    // $.post("api/send", {name: "Jenny"}, function(data) {
-
-    //     console.log (data);
-    //     console.log ("success!")
-    // })
-
-    // $.ajax("/api/send", {
-    //     type: "POST",
-    //     data: "Jenny"
-    //   }).then(function() {
-    //     console.log("Added " + "Jenny!");
-    // alert("saved!");
-    // reload the page after addition to get the updated list
-    //     location.reload();
-    //   });
-    // });
   });
 
-  // Adding event listeners to the form to create a new object, and the button to delete
-  // an Author
+  //on click event for deleting a chosen collection
+  $(".deleteCollection").on("click", deleteButtonCollection);
+  // Function for handling what happens when the delete button is pressed
+  console.log("clicked");
 
+  // function runs for what happends upon delete click
+  function deleteButtonCollection(event) {
+    // will grab the data attribute (data-collectionId) set in collections handlebars file for specific delete button. Handlebars changed the camelCase to lowercase in actual html for the data attribute
+    var id = $(this).data("collectionid");
+    console.log(id);
 
-      $(".deleteCollection").on("click", deleteButtonCollection);
-      // Function for handling what happens when the delete button is pressed
-      console.log("clicked")
-    function deleteButtonCollection(event) {
-
-      // need to edit these parent variables
-      // rather than using  var id = $(this).attr("id") ?
-      var id = $(this).data("collectionid")
-      console.log(id);
-
-        $.ajax({
-          url: "/api/collections/" + id,
-          type: "DELETE",
-          success: function() {
-            location.reload();
-          }
-      });
-    }
-//   experiment with how to send data with ajax to the backend
+    // runs ajax to delete collection and reload page
+    $.ajax({
+      url: "/api/collections/" + id,
+      type: "DELETE",
+      success: function() {
+        location.reload();
+      }
+    });
+  }
 
   // closing document.ready
 });
