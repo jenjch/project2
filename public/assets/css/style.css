@@ -83,3 +83,33 @@ float: left;
 
 float: left;
 }
+
+.sendCollection, .deleteCollection {
+  margin-bottom: 15px;
+}
+
+.sendCollection {
+  margin-left: 5px;
+}
+
+.nameInput, .emailInput {
+  margin-top: 4px;
+}
+
+.collectionHomeBtn {
+  /* margin-top: 18px; */
+  margin-right: 3px;
+} 
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;  
+}
+::-moz-placeholder {
+  font-style: italic;  
+}
+:-ms-input-placeholder {  
+  font-style: italic; 
+}

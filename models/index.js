@@ -1,3 +1,4 @@
+// standard file for Sequelize
 "use strict";
 
 const fs = require("fs");

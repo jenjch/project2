@@ -1,5 +1,3 @@
-const DB = require("../models");
-
 module.exports = function(sequelize, DataTypes) {
   var Collection = sequelize.define("Collection", {
     // instantiating creates id
@@ -13,21 +11,11 @@ module.exports = function(sequelize, DataTypes) {
     // is not null before querying the DB, look at the validations section below.
     description: { type: DataTypes.STRING, allowNull: false },
 
-    //It is possible to create foreign keys:
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-
-    //   // references: {
-    //   //   // This is a reference to another model
-    //   //   model: DB.User,
-
-    //   //   // This is the column name of the referenced model
-    //   //   key: "id"
-    //   // }
-    // }
+    // foreign keys reference not needed, Sequelize creates automatically
   });
 
   Collection.associate = function(DB) {
+    // creates the joined table CollectionPodcast automatically. Podcasts can belong in any number of Collections.
     Collection.belongsToMany(DB.Podcast, { through: "CollectionPodcast" });
   };
   return Collection;
