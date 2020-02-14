@@ -52,11 +52,11 @@ $(document).ready(function() {
 
     // make sure users type at least one character in input
     if (emailInput.length < 1) {
-      return alert("enter email failed");
+      return;
     }
 
     if (nameInput.length < 1) {
-      return alert("enter name failed");
+      return;
     }
 
     // hides the name/email input fields and "Send Collection button" from collection when emailing the content  (will apear again on page reload)
