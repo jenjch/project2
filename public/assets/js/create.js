@@ -11,15 +11,7 @@ $(document).ready( function(){
      window.location.href="search";
     });
   }) 
-  $("#addToBtn").on("click", function() {
-    event.preventDefault();
-    console.log("Boom!");
-    var NewPodcastID = $(this).data("podcastId");
-    var CollectionID = localStorage.getItem("activeCollectionID");
-    $.post("/api/collections/" + CollectionID + "/add/" + NewPodcastID, function(res) {
-        console.log(res);
-  })
-});
+
 })
 
 

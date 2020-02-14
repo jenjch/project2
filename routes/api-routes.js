@@ -79,41 +79,49 @@ app.delete("/api/collections/:id", function(req, res) {
 
 
   // GET route for getting podcasts based on query parameter Title
-  app.get("/api/search/:title", function(req, res) {
+  app.get("/api/search/:query/:istitle", function(req, res) {
     
     // findAll returns all entries based on parameter for query
     //in this case looking in table Podcasts for those matching title from req.
-    db.Podcast.findAll({
+    console.log(req.params)
+    db.Podcast.findAll(req.params.istitle === "1"?{
       where: {
         title: {
-               [Op.like]  : `%${req.params.title}%`
+               [Op.like]  : `%${req.params.query}%`
         }
+      },
+    }:{
+      where: {
+        author: {
+              [Op.like] : `%${req.params.query}%`
+        } 
       },
     })
       .then(function(dbPodcastTitle) {
+        console.log(dbPodcastTitle);
         res.json(dbPodcastTitle);
-      });
-  });
+      });  
+});
   //end of GET route for podcasts based on title
 
 
   // GET route for getting podcasts based on query parameter Author
-  app.get("/api/searchau/:author", function(req, res) {
+  // app.get("/api/searchau/:author", function(req, res) {
     
-    // findAll returns all entries based on parameter for query
-    //in this case looking in table Podcasts for those matching author from req.
-    db.Podcast.findAll({
-      where: {
-        author: {
-              [Op.like] : `%${req.params.author}%`
-        } 
-      },
-    })
-      .then(function(dbPodcastAuthor) {
-        res.json(dbPodcastAuthor);
-      });
-  });
-  //end of GET route for podcasts based on Author
+  //   // findAll returns all entries based on parameter for query
+  //   //in this case looking in table Podcasts for those matching author from req.
+  //   db.Podcast.findAll({
+  //     where: {
+  //       author: {
+  //             [Op.like] : `%${req.params.author}%`
+  //       } 
+  //     },
+  //   })
+  //     .then(function(dbPodcastAuthor) {
+  //       res.json(dbPodcastAuthor);
+  //     });
+  // });
+  // //end of GET route for podcasts based on Author
 
 
   app.post("/api/user", function(req, res) {
