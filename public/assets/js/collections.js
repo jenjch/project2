@@ -91,26 +91,26 @@ $(document).ready(function() {
   // Adding event listeners to the form to create a new object, and the button to delete
   // an Author
 
-  // $(document).on("click", ".deleteCollection", handleDeleteButtonPress);
 
-  //     $(".deleteCollection").on("click", deleteButtonCollection);
-  //     // Function for handling what happens when the delete button is pressed
-  //   function deleteButtonCollection(event) {
+      $(".deleteCollection").on("click", deleteButtonCollection);
+      // Function for handling what happens when the delete button is pressed
+      console.log("clicked")
+    function deleteButtonCollection(event) {
 
-  //     // need to edit these parent variables
-  //     // rather than using  var id = $(this).attr("id") ?
-  //     var listItemData = $(this).parent("td").parent("tr").data("author");
-  //     var id = listItemData.id;
+      // need to edit these parent variables
+      // rather than using  var id = $(this).attr("id") ?
+      var id = $(this).data("collectionid")
+      console.log(id);
 
-  //       $.ajax({
-  //         url: "/api/collections/" + id,
-  //         type: "DELETE",
-  //         success: function() {
-  //           location.reload();
-  //         }
-  //     });
-  //   }
-  // experiment with how to send data with ajax to the backend
+        $.ajax({
+          url: "/api/collections/" + id,
+          type: "DELETE",
+          success: function() {
+            location.reload();
+          }
+      });
+    }
+//   experiment with how to send data with ajax to the backend
 
   // closing document.ready
 });
