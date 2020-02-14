@@ -1,8 +1,8 @@
 {
   "development": {
 
-    "username": "xxxxx",
-    "password": "xxxx",
+    "username": "root",
+    "password": "lilac",
 
     "database": "podcastsDB",
     "host": "127.0.0.1",
