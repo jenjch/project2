@@ -9,7 +9,6 @@
 var db = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const sendmail = require("sendmail")();
 const nodemailer = require("nodemailer");
 
 var transporter = nodemailer.createTransport({
@@ -227,31 +226,14 @@ module.exports = function(app) {
   });
 
   app.post("/api/send", function(req, res) {
-    //   console.log ("sending from the backend");
-    //   // console.log (req);
-    //   sendmail({
-    //     from: 'podcastAdmn@gmail.com',
-    //     to: 'podcastAdmn@gmail.com',
-    //     subject: 'TEST Podcast Collection Recommendation!',
-    //     html: '<h1> test https://github.com/jenjch/project2/</h1>',
-    //   }, function(err, reply) {
-    //     console.log(err && err.stack);
-    //     // console.dir(reply);
-    //     // if (err) {
-    //     //  return res.send("email failed");
-    //     // }
-
-    //     // res.send("email sent!");
-    // });
 
     const mailOptions = {
       from: "podcastAdmn@gmail.com", // sender address
 
       // need to see how to pass user entered email to this value
       to: req.body.enteredEmail, // list of receivers
-      subject: req.body.enteredName + " Here are some Podcast recommendations for you!", // Subject line
+      subject: req.body.enteredName + ", here are some Podcast recommendations for you!", // Subject line
 
-      // how to use handlebars?
       html:
          req.body.collectionBody
 
