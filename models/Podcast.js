@@ -1,6 +1,3 @@
-const DB = require("../models");
-// don't think we need above since we have .associate at the bottom and Const DB is not being used -JC
-
 module.exports = function(sequelize, DataTypes) {
   var Podcast = sequelize.define("Podcast", {
     // instantiating creates id
@@ -14,14 +11,15 @@ module.exports = function(sequelize, DataTypes) {
     title: { type: DataTypes.STRING, allowNull: false },
     image: DataTypes.TEXT,
     description: DataTypes.TEXT,
-    language : DataTypes.STRING,
+    language: DataTypes.STRING,
     categories: DataTypes.STRING,
     website: DataTypes.STRING,
     author: DataTypes.STRING,
-    itunes_id: DataTypes.INTEGER,
+    itunes_id: DataTypes.INTEGER
   });
 
   Podcast.associate = function(DB) {
+    // creates the joined table CollectionPodcast automatically. Podcasts can belong in any number of Collections.
     Podcast.belongsToMany(DB.Collection, { through: "CollectionPodcast" });
   };
   return Podcast;
