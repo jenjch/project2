@@ -1,10 +1,9 @@
 <body>
 
   <div class="jumbotron col-7">
-    <a class="btn btn-dark btn-xs btnLeft collectionHomeBtn" href="/"
-        role="button">Home</a>
-        <h1 class="display-4 ">Welcome to Your Podcast Collections!</h1>
-        <br>
+    <a class="btn btn-dark btn-xs btnLeft collectionHomeBtn" href="/" role="button">Home</a>
+    <h1 class="display-4 ">Welcome to Your Podcast Collections!</h1>
+    <br>
 
     <div class="accordion" id="accordionCollection">
 
@@ -17,7 +16,7 @@
             <button class="float-left btn btn-link collapsed text-info" type="button" data-toggle="collapse"
               data-target="#collapse{{id}}" aria-expanded="false" aria-controls="collapse{{id}}"><i
                 class="fa fa-plus"></i>
-                {{!-- display the collection name and description col data in one line. Will be buttons for the accordion toggle --}}
+              {{!-- display the collection name and description col data in one line. Will be buttons for the accordion toggle --}}
               {{collection_name}}: {{description}}
             </button>
           </h2>
@@ -27,36 +26,36 @@
           <div class="card-body">
 
             {{!-- use table styling from bootstrap --}}
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col"></th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Website</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Website</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-                {{!-- each loop within the above Collection each loop - show each podcast included in a collection as each row in the table (title, author, website cols) --}}
-                {{#each Podcasts}}
-                <tr>
-                  {{!-- using math/increment helper (to start index at 1 instead of 0) that was put in the server.js code after handlebars loads --}}
-                  <th scope="row">{{inc @index}}</th>
-                  <td><img src="{{image}}" height="40" /></td>
-                  <td>{{title}}</td>
-                  <td>{{author}}</td>
-                  <td><a href="{{website}}" target="_blank">{{website}}</a></td>
-                </tr>
-                {{/each}}
+                  {{!-- each loop within the above Collection each loop - show each podcast included in a collection as each row in the table (title, author, website cols) --}}
+                  {{#each Podcasts}}
+                  <tr>
+                    {{!-- using math/increment helper (to start index at 1 instead of 0) that was put in the server.js code after handlebars loads --}}
+                    <th scope="row">{{inc @index}}</th>
+                    <td><img src="{{image}}" height="40" /></td>
+                    <td>{{title}}</td>
+                    <td>{{author}}</td>
+                    <td><a href="{{website}}" target="_blank">{{website}}</a></td>
+                  </tr>
+                  {{/each}}
 
-              </tbody>
-            </table>
-
+                </tbody>
+              </table>
+            </div>
             {{!-- Delete button triggers the api-route for delete by data-attribute on button (on click) --}}
-            <button type="button" data-collectionId="{{id}}" 
-              class="deleteCollection micButton btn btn-danger btn-md"><i
+            <button type="button" data-collectionId="{{id}}" class="deleteCollection micButton btn btn-danger btn-md"><i
                 class="fa fa-trash"></i> Delete</button>
 
             {{!-- name and email input fields captured by Send Collection button. POST in collections.js will send this and specific Collection info to backend. --}}
@@ -69,7 +68,7 @@
 
 
               <button data-collectionId="{{id}}" class="sendCollection micButton btn btn-dark btn-md"><i
-                class="fa fa-microphone"></i>
+                  class="fa fa-microphone"></i>
                 Send
                 Collection</button>
             </form>
