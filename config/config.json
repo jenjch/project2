@@ -2,7 +2,7 @@
   "development": {
 
     "username": "root",
-    "password": "lilac",
+    "password": "",
 
     "database": "podcastsDB",
     "host": "127.0.0.1",
