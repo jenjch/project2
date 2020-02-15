@@ -1,24 +1,27 @@
 
-    <div class="jumbotron col-7">
-      <h1 class="display-4">Welcome to Podcast Collection!</h1>
-      <p class="lead">Start your podcast collection here!</p>
+    <div class="jumbotron col-5">
+      <h1 class="display-4">CastCall : Podcast Collection</h1>
+      <p class="lead">Start your podcast collection here.</p>
       <hr class="my-4">
-      <p class="input">Collection Title</p>
-      <br></br>
+
+      <div class="formContainer">
+      <h3 class="input">Collection Title:</h3>
       <form class="collectionInput">
         <input type="text" id="colNameIn" name="" placeholder="">
       </form>
+      <p id="nameAlert" class="hide">** Please enter a name for your collection...</p>
       <br></br>
-      <p class="input">Collection Description</p>
-      <br></br>
+      <h3 class="input">Collection Description:</h3>
+
       <form class="collectionInput">
-        <input type="text" id="colDescriptionIn" name="" placeholder="">
-      
+        <input type="text" id="colDescriptionIn" name="" placeholder="">      
       </form>
-      <br></br>
+      <p id="descAlert" class="hide">** Please enter a description for your collection...</p>
       <br></br>
       {{!-- <button id="collectionBtn" class="btn btn-dark btn-lg btnLeft" href="search">Create Collection!</button> --}}
       <a id="collectionBtn" class="btn btn-dark btn-lg btnLeft" href="search" role="button">Create New Collection</a>
       <a class="btn btn-dark btn-lg btnRight" href="collections" role="button">View Collections</a>
+
+      </div>
       <p class="mt-5 mb-3 text-muted">Copyright &copy; 2020 Jenny, Andre, Nathan, Cohen. All Rights Reserved. </p>
     </div>

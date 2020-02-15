@@ -1,6 +1,6 @@
 <body>
 
-  <div class="jumbotron col-7">
+  <div class="jumbotron col-9">
     <a class="btn btn-dark btn-xs btnLeft collectionHomeBtn" href="/" role="button">Home</a>
     <h1 class="display-4 ">Welcome to Your Podcast Collections!</h1>
     <br>
@@ -55,7 +55,7 @@
               </table>
             </div>
             {{!-- Delete button triggers the api-route for delete by data-attribute on button (on click) --}}
-            <button type="button" data-collectionId="{{id}}" class="deleteCollection micButton btn btn-danger btn-md"><i
+            <button type="button" data-collectionId="{{id}}" class="deleteCollection btn btn-danger btn-md"><i
                 class="fa fa-trash"></i> Delete</button>
 
             {{!-- name and email input fields captured by Send Collection button. POST in collections.js will send this and specific Collection info to backend. --}}
