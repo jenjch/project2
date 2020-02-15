@@ -1,6 +1,7 @@
     <div id="main" class="container col-12">
       <div class="jumbotron col-8">
           <a class="btn btn-dark btn-xs btnLeft" href="/" role="button">Home</a>
+          <a class="btn btn-dark btn-xs btnLeft" href="/collections" role="button">Collections</a>
 
         <h1 class="display-4">Search Podcasts!</h1>
         <p class="lead">You can search for Podcasts by Title or Author.</p>
@@ -23,7 +24,7 @@
           <input type="text" id="searchBox" name="" placeholder="Search...">
 
           <button type="submit" id="searchBtn" class="btn btn-dark btn-md fa fa-search"></button> 
-           
+           <p id="searchAlert" class="hide">** Please enter a search term...</p>
         </form>
         <br></br>
         <h6>Click on the <i class="fa fa-microphone fa-2x"></i> to add podcast to your collection.</h6>
@@ -39,22 +40,27 @@
 
                   </form>
                 </div>
+          </div>                
           </div>
-
-        {{!-- <!---- Middle  Column -------------->
-          <div class="col-2">
-     
-          </div>
-
-        <!------ Collection Column --------------->
-          <div class="appBoxes col-5">
-            <div id="sResults" class="container">
-              <h5>My Collection:</h5>
-                <div id="addToCollection"></div> --}}
-        
-          </div>
-        </div>
-        
-      
+        </div>           
       </div>     
     </div>
+
+    <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> CastCall Says:</h5>
+        {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> --}}
+      </div>
+      <div class="modal-body">
+        <p>"Your selection has been added to your collection."</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
