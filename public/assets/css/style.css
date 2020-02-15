@@ -70,20 +70,26 @@ padding-right: 25px;
 float: left;
 }
 
-.sendCollection, .deleteCollection {
+/* .sendCollection, .deleteCollection {
   margin-bottom: 15px;
+  margin-bottom: 15px;
+} */
+
+.deleteCollection {
+  float: right;
+  margin-bottom: 4px;
 }
 
 .sendCollection {
   margin-left: 5px;
+  margin-bottom: 4px;
 }
 
 .nameInput, .emailInput {
-  margin-top: 4px;
+  margin-bottom: 20px;
 }
 
 .collectionHomeBtn {
-  /* margin-top: 18px; */
   margin-right: 3px;
 } 
 
