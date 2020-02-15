@@ -34,6 +34,7 @@ $(document).ready( function(){
       $("#searchResults").append("<h6>Podcast ID: " + searchResult.id + "</h6>");
       $("#searchResults").append("<h6>Title: " + searchResult.title + "</h6>");
       $("#searchResults").append("<h6>Author: " + searchResult.author + "</h6>");
+      $("#searchResults").append("<h6>Description: " + searchResult.description + "</h6>");
 
   //------------------renders button in search result to add podcast to collection------------- 
 
