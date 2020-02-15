@@ -212,7 +212,9 @@ module.exports = function(app) {
         ", here are some Podcast recommendations for you!", // Subject line
 
       // grabs the handlebars html (could also add bootstrap reference if wanted) from that same front end POST
-      html: req.body.collectionBody + "<br> See more at <a href='https://project2-020420.herokuapp.com/collections'> My Podcast Collections</a>!"
+      html:
+        req.body.collectionBody +
+        "<br> See more at <a href='https://project2-020420.herokuapp.com/collections'> My Podcast Collections</a>!"
     };
 
     // the response we're sending to front end to check for completion (that email was sent)
